@@ -1,21 +1,32 @@
+import { useState } from 'react';
 import './App.css';
-import PersonClass from './components/PersonClass';
-import PersonFunction from './components/PersonFunction';
-import PersonStateClass from './components/PersonStateClass';
-import PersonStateFunction from './components/PersonStateFunction';
+import CountClassLifecycle from './components/CountClassLifecycle';
+import CountFunctionLifecycle from './components/CountFunctionLifecycle';
+import ClockClass from './components/ClockClass';
+import Student from './components/Student';
 
 function App() {
 
-  const personName = "Narendra Modi";
-  const cities = ["City1", "City2", "City3"];
+  const [visible, setVisible] = useState(true);
 
   return (
     <div className="App">
       <h1>Welcome to React JS!!!</h1>
-      <PersonClass personName={personName} cities={cities} />
-      <PersonFunction personName={personName} cities={cities} />
-      <PersonStateClass />
-      <PersonStateFunction />
+      <button onClick={() => setVisible(!visible)}>
+        {visible ? "Hide" : "Show"} Components
+      </button>
+      {/* Conditional Rendering */}
+      {visible && <CountClassLifecycle />}
+      <hr/>
+      {visible && <CountFunctionLifecycle /> }
+      <hr/>
+      {visible ? <ClockClass /> : <h2>Clock class hidden!!!</h2>}
+      <hr/>
+      <Student firstName="Sachin" 
+              lastName="Yadav" 
+              email="sachin@gmail.com"
+              age={15}
+              rank={3} />
     </div>
   );
 }
